@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+    <div class="p-2 text-center">
+      <h1>管理者用ログイン画面</h1>
+    </div>
+    <div class="mx-auto">
+      <%= form_with model: @admin, url: admin_session_path do |f| %>
+      <div class="p-4">
+        <div class="mb-4 p-2 bg-light rounded">
+          <div class="my-3 px-2">
+            <div><%= f.label :email, 'メールアドレス' %></div>
+            <div><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "nagano_cake@sweets.com", class: "w-100" %></div>
+          </div>
+          <div class="my-3 px-2">
+            <div><%= f.label :password, 'パスワード' %></div>
+            <div><%= f.password_field :password, autocomplete: "current-password", class: "w-100"  %></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-center"><%= f.submit "ログイン", class: "btn btn-primary my-2 w-50 py-2" %></div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+    <h1>注文情報確認</h1>
+    <div class="mx-auto">
+      <div class="my-4">
+        <h4 class="headline-blue">支払情報</h4>
+        <div class="mb-4 p-2 bg-light rounded">
+          <div class="my-3 px-2">
+            <h5>支払方法</h5>
+            <p><%= @order.payment_method_i18n %></p>
+          </div>
+          <div class="my-3 px-2">
+            <h5>お届け先</h5>
+            〒<%= @order.postal_code %><br />
+            <%= @order.address %><br />
+            <%= @order.name %>
+          </div>
+          <div class="my-3 px-2">
+            <h5>注文ステータス</h5>
+            <%= @order.order_status_i18n %>
+          </div>
+        </div>
+      </div>
+      <div class="my-4">
+        <h4 class="headline-blue">注文商品</h4>
+        <table class="table text-center border">
+          <thead>
+            <tr class="table-active">
+              <th>商品</th>
+              <th>価格（税込）</th>
+              <th>個数</th>
+              <th>小計</th>
+              <th>製品ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_goods.each do |order_good| %>
+              <tr>
+                <td  class="text-left">
+                  <%= link_to item_path(order_good.item) do %>
+                    <%= image_tag order_good.item.image, class: "mx-1 img-wrap-cart" %>
+                    <%= order_good.item.name %>
+                  <% end %>
+                </td>
+                <td>¥<%= order_good.item.add_tax_price %></td>
+                <td><%= order_good.amount %></td>
+                <td>¥<%= order_good.sum_of_price.to_s(:delimited) %></td>
+                <td><%= order_good.making_status_i18n %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <table class="table border col-7 col-md-6 col-xl-4 my-5r">
+          <tr>
+            <th class="table-active">商品合計</th>
+            <td>¥<%= @item_total_price.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class="table-active">送料</th>
+            <td>¥<%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th class="table-active">請求金額</th>
+            <td>¥<%= @order.total_payment.round.to_s(:delimited) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

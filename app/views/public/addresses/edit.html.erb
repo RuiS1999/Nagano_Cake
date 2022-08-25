@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+    <h1>配送先変更</h1>
+    <%= render "layouts/error_messages", resource: @address %>
+    <div>
+      <%= form_with model: @address do |f| %>
+      <div class="mb-4 p-2 bg-light rounded">
+        <div class="p-2">
+          <div>郵便番号（ハイフンなし）</div>
+          <div><%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "0000000", class: "w-100" %></div>
+        </div>
+        <div class="p-2">
+          <div>住所</div>
+          <div><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "w-100" %></div>
+        </div>
+        <div class="p-2">
+          <div>宛名</div>
+          <div><%= f.text_field :name, autocomplete: "name", placeholder: "菓子太郎", class: "w-100" %></div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="text-center"><%= f.submit '変更内容を保存', class: "btn btn-primary my-2 w-50 py-2" %></div>
+        </div>
+      </div>
+      <% end %>
+    <div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <%= image_tag @item.get_image(400, 400), class: "img-show" %>
+    <div class="col-sm-10 col-md-6 text-break">
+      <div>
+        <h2 class="py-3"><%= @item.name %></h2>
+        <div>
+          <h5>商品説明</h5>
+          <p><%= @item.introduction %></p>
+        </div>
+      </div>
+      <div>
+        <h4 class="mt-4">¥<%= @item.add_tax_price.to_s(:delimited) %><a>（税込）</a></h4>
+        <% if @item.is_active == true %>
+          <% if customer_signed_in? %>
+            <%= form_with model: @cart_item do |f| %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.submit 'カートに追加', class:"mx-2 btn btn-success" %>
+            <% end %>
+          <% else %>
+            <h5>会員登録を行わないと注文できません(→<%= link_to 'こちらから',new_customer_registration_path  %>)</h5>
+          <% end %>
+        <% else %>
+          <h5 class="text-danger">売切れ中</h5>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

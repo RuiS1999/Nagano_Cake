@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="box26 mx-4">
+    <h5 class="box-title">入力エラー</h5>
+    <ul class="mt-3 text-left">
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+ja:
+  enums:
+    order:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+
+      order_status:
+        payment_waiting: "入金待ち"
+        payment_confirmation: "入金確認"
+        in_production: "製作中"
+        preparing_delivery: "発送準備中"
+        delivered: "発送済み"
+
+    order_good:
+      making_status:
+        start_not_possible: "着手不可"
+        production_pending: "製作待ち"
+        in_production: "製作中"
+        production_complete: "製作完了"
+
+
+  activerecord:
+    attributes:
+      customer:
+        email: メールアドレス
+        password: パスワード
+        last_name: 名前(姓)
+        first_name: 名前(名)
+        last_name_kana: フリガナ(セイ)
+        first_name_kana: フリガナ(メイ)
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+
+      session:
+        email: メールアドレス
+        password: パスワード
+
+      admin:
+        email: メールアドレス
+        password: パスワード
+
+      address:
+        name: 宛名
+        postal_code: 郵便番号
+        address: 住所
+
+      item:
+        name: 商品名
+        introduction: 説明
+        price_out: 価格
+
+      genre:
+        name: ジャンル名
+
+      order:
+        name: 宛名
+        postal_code: 郵便番号
+        address: 住所
+
+

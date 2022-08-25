@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mx-auto">
+    <%= image_tag @item.get_image(400, 400), class: "img-show" %>
+    <div class="col-md-10 col-lg-6 text-break">
+      <div>
+        <div>
+          <table class="table table-borderless">
+            <tr>
+              <td>商品名</td>
+              <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td>商品説明</td>
+              <td>
+                <div style="overflow-wrap: break-word; width: 15rem;">
+                  <%= @item.introduction %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+              <td>
+                税抜価格<br />
+                (税込価格)
+              </td>
+              <td>
+                ¥<%= @item.price_out.to_s(:delimited) %><br />
+                (¥<%= @item.add_tax_price.to_s(:delimited) %>)
+              </td>
+            </tr>
+            <tr>
+              <td>販売ステータス</td>
+              <td>
+                <% if @item.is_active == true %>
+                  <h5 class="text-success">販売中</h5>
+                <% else %>
+                  <h5 class="text-danger">売切れ</h5>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= link_to '商品情報編集', edit_admin_item_path(@item.id), class: "btn btn-success" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

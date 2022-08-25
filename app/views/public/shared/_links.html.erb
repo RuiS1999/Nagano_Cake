@@ -1,0 +1,8 @@
+<%- if controller_name != 'sessions' %>
+  アカウントを持っている方は <strong><u><%= link_to "こちら", new_session_path(resource_name) %></u></strong> からログインしてください。<br />
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  アカウントを持っていない方は <strong><u><%= link_to "こちら", new_registration_path(resource_name) %></u></strong> から新規登録を行なってください。<br />
+<% end %>
+

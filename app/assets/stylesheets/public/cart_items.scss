@@ -1,0 +1,21 @@
+// Place all the styles related to the public/cart_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.img-wrap-cart{
+      width: 5rem;
+      height: 3rem;
+      transition-duration: 0.5s;
+      object-fit: cover;
+      background-position: center;
+      cursor: pointer;
+  }
+
+  .img-wrap-cart:hover{
+      box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+      transform: translateY(-10px);
+      transition-duration: 0.5s;
+  }
+
+  .waku{
+      border: 1px solid;
+  }

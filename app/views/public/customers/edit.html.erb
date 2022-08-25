@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+    <div class="p-2 text-center">
+      <h1>会員情報編集</h1>
+      <%= render "layouts/error_messages", resource: @customer %>
+    </div>
+    <%= form_with model: @customer, url: customers_path do |f| %>
+    <div class="p-4">
+      <div class="mb-4 p-2 bg-light rounded">
+        <div class="p-2 mx-auto">
+          <div>
+            <%= f.label :last_name, "お名前" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :last_name, autocomplete: "name", placeholder: "永野", class: "w-49" %>
+            <%= f.text_field :first_name, autocomplete: "name", placeholder: "慶樹", class: "w-49" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :last_name_kana, "フリガナ(カナ)" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :last_name_kana, autocomplete: "name", placeholder: "ナガノ", class: "w-49" %>
+            <%= f.text_field :first_name_kana, autocomplete: "name", placeholder: "ケイキ", class: "w-49" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :email, "メールアドレス" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "nagano_cake@sweets.com", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :postal_code, "郵便番号" %>(ハイフンなし)<span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "1234567", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :address, "住所" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :address, placeholder: "長野県上伊那郡南箕輪村0-0", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :telephone_number, "電話番号" %>(ハイフンなし)<span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "00011112222", class: "w-100" %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <%= f.submit "変更内容を保存", class: "btn btn-success m-2 py-2 px-3" %><%= link_to '退会する', customers_retire_path, class: "btn btn-danger m-2 py-2 px-3" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+

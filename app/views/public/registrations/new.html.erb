@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+    <div class="p-2 text-center">
+      <h1>新規会員登録</h1>
+    </div>
+    <%= form_with model: @customer, url: customer_registration_path, id: 'new_user', class: 'new_user' do |f| %>
+    <div class="mx-3">
+      <%= render "layouts/error_messages", resource: resource %>
+    </div>
+    <div class="p-4">
+      <h4 class="headline-blue">個人情報</h4>
+      <div class="mb-4 p-2 bg-light rounded">
+        <div class="p-2 mx-auto">
+          <div>
+            <%= f.label :last_name, "お名前" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :last_name, autocomplete: "name", placeholder: "永野", class: "w-49" %>
+            <%= f.text_field :first_name, autocomplete: "name", placeholder: "慶樹", class: "w-49" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :last_name_kana, "フリガナ(カナ)" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :last_name_kana, autocomplete: "name", placeholder: "ナガノ", class: "w-49" %>
+            <%= f.text_field :first_name_kana, autocomplete: "name", placeholder: "ケイキ", class: "w-49" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :email, "メールアドレス" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "nagano_cake@sweets.com", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :password, "パスワード" %>
+            <% if @minimum_password_length %>
+              (<%= @minimum_password_length %> 文字以上)
+            <% end %>
+            <span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.password_field :password, autocomplete: "new-password", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :password_confirmationv, "パスワード" %>(確認用)<span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-100" %>
+          </div>
+        </div>
+      </div>
+      <h4 class="headline-blue">ご連絡先</h4>
+      <div class="mb-4 p-2 bg-light rounded">
+        <div class="p-2">
+          <div>
+            <%= f.label :postal_code, "郵便番号" %>(ハイフンなし)<span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "1234567", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :address, "住所" %><span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :address, placeholder: "長野県上伊那郡南箕輪村0-0", class: "w-100" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <div>
+            <%= f.label :telephone_number, "電話番号" %>(ハイフンなし)<span class="indispensable">必須</span>
+          </div>
+          <div>
+            <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "00011112222", class: "w-100" %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="text-center"><%= f.submit "新規登録", class: "btn btn-primary my-2 w-50 py-2" %></div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div>
+    <div class="px-3 mb-3 text-center">
+      <h5><%= render "public/shared/links" %></h5>
+    </div>
+  </div>
+</div>

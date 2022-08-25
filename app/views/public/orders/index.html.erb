@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="col-12 col-md-10 col-lg-9 mx-auto">
+    <h1 class="m-1">注文履歴一覧</h1>
+    <div>
+      <% if @orders.present? %>
+      <table class="table text-center table-condensed mt-3">
+        <thead>
+          <tr>
+            <td>注文日</td>
+            <td>注文商品</td>
+            <td>支払金額</td>
+            <td>ステータス</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <% order.order_goods.first(3).each do |order_good| %>
+                  <%= order_good.item.name %><br />
+                <% end %>
+              </td>
+              <td>¥<%= order.total_payment.round.to_s(:delimited) %></td>
+              <td><%= order.order_status_i18n %></td>
+              <td><%= link_to '注文詳細', order_path(order.id), class: "btn-sm btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <h5>注文履歴がありません</h5>
+      <% end %>
+    </div>
+  </div>
+</div>

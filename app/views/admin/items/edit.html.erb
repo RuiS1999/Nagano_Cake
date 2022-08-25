@@ -1,0 +1,50 @@
+
+<div class="container">
+    <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+      <h1>商品情報変更</h1>
+      <%= render "layouts/error_messages", resource: @item %>
+      <div>
+        <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+        <div class="mb-4 p-2 bg-light rounded">
+          <div class="p-2">
+            <div>商品イメージ画像</div>
+            <div><%= f.file_field :image, placeholder: "商品イメージ", accept: "image/*" %></div>
+          </div>
+          <div class="p-2">
+            <div>商品名</div>
+            <div><%= f.text_field :name, class: "w-100 form-control" %></div>
+          </div>
+          <div class="p-2">
+            <div>商品説明文</div>
+            <div><%= f.text_area :introduction, class: "w-100 form-control", :size=>"100%x5" %></div>
+          </div>
+          <div class="p-2">
+            <div>ジャンル</div>
+            <div><%= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] } %></div>
+          </div>
+          <div class="p-2">
+            <div>税抜き価格</div>
+            <div><%= f.text_field :price_out, class: "w-100 form-control" %></div>
+          </div>
+          <div class="p-2">
+            <div>販売ステータス</div>
+            <div>
+              <%= f.radio_button :is_active, true, checked: true %>
+              <%= f.label :is_active, "販売中",class:"form_label" %>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, "販売停止中",class:"form_label" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div class="text-left">
+              <%= link_to '戻る', admin_item_path(@item.id), class: "btn btn-success m-2 w-25 py-2" %>
+              <%= f.submit '変更内容を保存', class: "btn btn-primary m-2 w-50 py-2" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>

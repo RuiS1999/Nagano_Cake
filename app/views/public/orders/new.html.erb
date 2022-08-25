@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
+   <div class="p-2 text-center">
+     <h1>支払情報入力</h1>
+   </div>
+   <div class="mx-auto">
+      <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+      <%= f.hidden_field :postage, :value => 800 %>
+      <%= f.hidden_field :total_payment, :value => @total %>
+      <div class="p-4">
+      <h4 class="headline-blue">支払方法</h4>
+        <div class="mb-4 p-2 bg-light rounded">
+          <div class="py-3 px-2">
+            <div>
+              <h5>
+                <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+                <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+              </h5>
+            </div>
+          </div>
+        </div>
+      <h4 class="headline-blue">お届け先</h4>
+        <div class="mb-4 p-2 bg-light rounded">
+          <div class="py-3 px-2">
+            <h5><%= radio_button_tag(:select_address, :radio0, checked: true) %> <%= label_tag(:select_address, "ご自身の住所") %></h5>
+            <div class="px-2"><%= @order.customer.address_display %></div>
+          </div>
+          <% if @customer.addresses.count != 0 %>
+            <div class="py-3 px-2">
+              <%= radio_button_tag(:select_address, :radio1) %>
+              <%= label_tag(:select_address, "登録先住所から選択") %><br>
+              <%= f.select :select_address, options_from_collection_for_select(Address.all, :id, :address_display) %>
+            </div>
+          <% end %>
+          <div class="py-3 px-2">
+            <h5><%= radio_button_tag(:select_address, :radio2) %> <%= label_tag(:select_address, "新しい住所を入力") %></h5>
+            <div class="px-2 pb-2">
+              <div>
+                <%= f.label :name, "宛名" %><span class="indispensable">必須</span>
+              </div>
+              <div>
+                <%= f.text_field :name, autocomplete: "name", placeholder: "永野恵希", class: "w-100" %>
+              </div>
+            </div>
+            <div class="p-2">
+              <div>
+                <%= f.label :postal_code, "郵便番号" %>(ハイフンなし)<span class="indispensable">必須</span>
+              </div>
+              <div>
+                <%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "1234567", class: "w-100" %>
+              </div>
+            </div>
+            <div class="p-2">
+              <div>
+                <%= f.label :address, "住所" %><span class="indispensable">必須</span>
+              </div>
+              <div>
+                <%= f.text_field :address, placeholder: "長野県上伊那郡南箕輪村0-0", class: "w-100" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="text-left"><%= f.submit "注文確認", class: "btn btn-primary my-2 w-50 py-2" %></div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
