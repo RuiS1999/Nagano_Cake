@@ -15,7 +15,7 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @total_items = Item.all
-    @items = Item.page(params[:page])
+    @items = Item.page(params[:page]).per(12)
   end
 
   def edit

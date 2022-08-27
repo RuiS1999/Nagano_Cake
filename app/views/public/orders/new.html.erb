@@ -35,7 +35,7 @@
             <div class="py-3 px-2">
               <%= radio_button_tag(:select_address, :radio1) %>
               <%= label_tag(:select_address, "登録先住所から選択") %><br>
-              <%= f.select :select_address, options_from_collection_for_select(Address.all, :id, :address_display) %>
+              <%= f.select :select_address, options_from_collection_for_select(@customer.addresses.all, :id, :address_display) %>
             </div>
           <% end %>
           <div class="py-3 px-2">

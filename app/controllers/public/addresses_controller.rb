@@ -4,6 +4,7 @@ class Public::AddressesController < ApplicationController
   def new
     @address = Address.new
     @addresses = Address.all
+    @addresses = current_customer.addresses.all
   end
 
   def create
